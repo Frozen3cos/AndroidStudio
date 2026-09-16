@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:background="#FFFFFF"
+    android:layout_marginBottom="1dp">
+
+    <ImageView
+        android:id="@+id/ivFriendAvatar"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:src="@drawable/avatar2"
+        android:contentDescription="@string/friend_avatar" />
+
+    <TextView
+        android:id="@+id/tvFriendName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="16dp"
+        android:text="好友昵称"
+        android:textSize="16sp"
+        android:textColor="#333333" />
+
+</LinearLayout>

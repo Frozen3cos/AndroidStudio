@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="40dp"
+        android:background="#4CAF50">
+
+        <ImageView
+            android:id="@+id/ivMyAvatar"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/avatar1"
+            android:contentDescription="@string/user_avatar" />
+
+        <TextView
+            android:id="@+id/tvMyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/tvMyEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="example@mail.com"
+            android:textSize="14sp"
+            android:textColor="#E0E0E0"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:layout_margin="16dp"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mine_settings"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:paddingVertical="12dp" />
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="#EEEEEE" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mine_about"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:paddingVertical="12dp" />
+    </LinearLayout>
+
+    <com.example.myapplication.CustomButton
+        android:id="@+id/btnLogoutMine"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_margin="16dp"
+        app:buttonText="@string/btn_logout"
+        app:buttonColor="#FF6B6B" />
+
+</LinearLayout>
