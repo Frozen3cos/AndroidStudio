@@ -20,6 +20,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.db.UserDao;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText etRegUsername, etRegPassword, etRegConfirm, etRegPhone, etRegEmail;
@@ -36,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
     private final String[] avatarNames = {"红色头像", "蓝色头像", "绿色头像", "橙色头像"};
     private int selectedAvatarIndex = 0;
 
-    private UserStore userStore;
+    private UserDao userDao;
 
     private final ActivityResultLauncher<Intent> pickImageLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -60,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_register);
 
-        userStore = new UserStore(this);
+        userDao = new UserDao(this);
 
         initViews();
         setupListeners();
@@ -165,7 +167,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (username.length() < 3 || username.length() > 16) {
             showError("用户名需要 3~16 位字符"); return;
         }
-        if (userStore.isUserExists(username)) {
+        if (userDao.exists(username)) {
             showError("该用户名已被注册，换一个试试"); return;
         }
         if (password.isEmpty()) { showError("请输入密码"); return; }
@@ -187,7 +189,7 @@ public class RegisterActivity extends AppCompatActivity {
         tvRegError.setVisibility(View.GONE);
 
         // 写入用户存储
-        boolean ok = userStore.register(username, password, phone, email, selectedAvatarIndex);
+        boolean ok = userDao.insert(username, password, phone, email, selectedAvatarIndex);
         if (!ok) {
             showError("注册失败，请稍后再试"); return;
         }

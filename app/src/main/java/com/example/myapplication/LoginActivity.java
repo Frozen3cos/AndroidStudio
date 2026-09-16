@@ -18,6 +18,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.db.UserDao;
+
 public class LoginActivity extends AppCompatActivity {
 
     private static final String SP_NAME = "login_prefs";
@@ -41,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     private int selectedAvatar = avatarRes[0];
     private boolean isPasswordVisible = false;
 
-    private UserStore userStore;
+    private UserDao userDao;
 
     /** 注册页返回结果的接收器 */
     private final ActivityResultLauncher<Intent> registerLauncher =
@@ -67,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        userStore = new UserStore(this);
+        userDao = new UserDao(this);
 
         initViews();
         loadRememberedAccount();
@@ -171,12 +173,12 @@ public class LoginActivity extends AppCompatActivity {
         if (password.length() < 6) { showError("密码至少需要 6 位字符"); return; }
 
         // 账号是否存在
-        if (!userStore.isUserExists(username)) {
+        if (!userDao.exists(username)) {
             showError("该账号未注册，请点击下方“立即注册”");
             return;
         }
         // 密码是否正确
-        if (!userStore.validateLogin(username, password)) {
+        if (!userDao.validateLogin(username, password)) {
             showError("用户名或密码错误");
             return;
         }

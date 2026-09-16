@@ -26,17 +26,22 @@ public class FriendAdapter extends ArrayAdapter<Friend> {
             convertView = LayoutInflater.from(context)
                     .inflate(R.layout.item_friend, parent, false);
         }
-
         Friend friend = friends.get(position);
+        ImageView ivAvatar = convertView.findViewById(R.id.ivFriendAvatar);
+        TextView tvName = convertView.findViewById(R.id.tvFriendName);
+        TextView tvSignature = convertView.findViewById(R.id.tvFriendSignature);
 
-        ImageView ivFriendAvatar = convertView.findViewById(R.id.ivFriendAvatar);
-        TextView tvFriendName = convertView.findViewById(R.id.tvFriendName);
-        TextView tvFriendSignature = convertView.findViewById(R.id.tvFriendSignature);
-
-        ivFriendAvatar.setImageResource(friend.getAvatarRes());
-        tvFriendName.setText(friend.getName());
-        tvFriendSignature.setText(friend.getSignature());
-
+        ivAvatar.setImageResource(avatarResOf(friend.getAvatarIndex()));
+        tvName.setText(friend.getName());
+        tvSignature.setText(friend.getSignature());
         return convertView;
+    }
+
+    /** 头像下标 → drawable 资源ID */
+    public static int avatarResOf(int index) {
+        int[] res = {R.drawable.avatar1, R.drawable.avatar2,
+                R.drawable.avatar3, R.drawable.avatar4};
+        if (index < 0 || index >= res.length) index = 0;
+        return res[index];
     }
 }
