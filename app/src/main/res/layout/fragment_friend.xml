@@ -5,15 +5,13 @@
     android:orientation="vertical"
     android:background="#F5F5F5">
 
+    <!-- 顶部绿色欢迎区 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:paddingTop="48dp"
-        android:paddingBottom="20dp"
+        android:padding="20dp"
         android:background="#4CAF50">
 
         <ImageView
@@ -48,6 +46,23 @@
         </LinearLayout>
     </LinearLayout>
 
+    <!-- 搜索框 -->
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:hint="搜索好友..."
+        android:background="@drawable/custom_background"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textSize="14sp"
+        android:inputType="text"
+        android:maxLines="1"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- 列表容器 -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -60,7 +75,7 @@
             android:divider="#EEEEEE"
             android:dividerHeight="1dp" />
 
-        <!-- C5: 空状态 -->
+        <!-- 空状态 -->
         <TextView
             android:id="@+id/tvFriendEmpty"
             android:layout_width="wrap_content"

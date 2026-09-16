@@ -48,8 +48,7 @@ public class FriendDetailActivity extends AppCompatActivity {
     private void receiveFriendData() {
         Friend friend = (Friend) getIntent().getSerializableExtra("friend");
         if (friend == null) return;
-        ivDetailAvatar.setImageResource(friend.getAvatarRes());
-        tvDetailName.setText(friend.getName());
+        ivDetailAvatar.setImageResource(FriendAdapter.avatarResOf(friend.getAvatarIndex()));        tvDetailName.setText(friend.getName());
         tvDetailSignature.setText(friend.getSignature());
         tvDetailGender.setText(friend.getGender());
         tvDetailPhone.setText(friend.getPhone());
