@@ -34,4 +34,7 @@
     <string name="btn_register">注 册</string>
     <string name="agree_terms">我已阅读并同意《用户协议》和《隐私政策》</string>
     <string name="pwd_strength_weak">密码强度</string>
+    <string name="chat_hint">说点什么...</string>
+    <string name="chat_send">发送</string>
+    <string name="btn_send_msg">发消息</string>
 </resources>
