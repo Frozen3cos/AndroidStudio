@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.myapplication.activity.LocationActivity;
 
 public class FriendDetailActivity extends AppCompatActivity {
 
@@ -18,8 +19,9 @@ public class FriendDetailActivity extends AppCompatActivity {
     private TextView tvDetailGender, tvDetailPhone, tvDetailEmail;
     private CustomButton btnBack;
     private CustomButton btnSendMsg;
+    private CustomButton btnLocation;    // 🆕 查看位置按钮
 
-    // ===== 好友数据（成员变量，供点击事件使用） =====
+    // ===== 好友数据 =====
     private Friend friend;
 
     @Override
@@ -36,19 +38,27 @@ public class FriendDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_friend_detail);
 
         initViews();
-        receiveFriendData();   // 先把 friend 加载好
+        receiveFriendData();
 
-        // 返回按钮
+        // 返回
         btnBack.setOnClickListener(v -> {
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
 
-        // 发消息按钮（独立的事件，不能嵌在上面的 lambda 里）
+        // 发消息
         btnSendMsg.setOnClickListener(v2 -> {
             Intent intent = new Intent(FriendDetailActivity.this, ChatActivity.class);
             intent.putExtra("friend_name", friend.getName());
             intent.putExtra("friend_avatar", friend.getAvatarIndex());
+            startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        });
+
+        // 🆕 查看位置（跳转到 LocationActivity）
+        btnLocation.setOnClickListener(v3 -> {
+            Intent intent = new Intent(FriendDetailActivity.this, LocationActivity.class);
+            intent.putExtra("friend_name", friend.getName());
             startActivity(intent);
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
@@ -64,9 +74,10 @@ public class FriendDetailActivity extends AppCompatActivity {
         tvDetailEmail = findViewById(R.id.tvDetailEmail);
         btnBack = findViewById(R.id.btnBack);
         btnSendMsg = findViewById(R.id.btnSendMsg);
+        btnLocation = findViewById(R.id.btnLocation);   // 🆕
     }
 
-    /** 从 Intent 接收好友信息 */
+    /** 接收好友数据 */
     private void receiveFriendData() {
         friend = (Friend) getIntent().getSerializableExtra("friend");
         if (friend == null) return;

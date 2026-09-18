@@ -9,6 +9,11 @@
         android:icon="@drawable/ic_tab_message"
         android:title="@string/tab_message" />
     <item
+        android:id="@+id/nav_chart"
+        android:icon="@drawable/ic_tab_chart"
+        android:title="@string/tab_chart" />
+
+    <item
         android:id="@+id/nav_mine"
         android:icon="@drawable/ic_tab_mine"
         android:title="@string/tab_mine" />

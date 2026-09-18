@@ -37,4 +37,7 @@
     <string name="chat_hint">说点什么...</string>
     <string name="chat_send">发送</string>
     <string name="btn_send_msg">发消息</string>
+    <string name="btn_view_location">查看位置</string>
+    <string name="tab_ai">AI</string>
+    <string name="tab_chart">统计</string>
 </resources>

@@ -129,6 +129,15 @@
         app:buttonColor="#4CAF50" />
 
     <com.example.myapplication.CustomButton
+        android:id="@+id/btnLocation"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="0dp"
+        app:buttonText="@string/btn_view_location"
+        app:buttonColor="#FF9800" />
+
+    <com.example.myapplication.CustomButton
         android:id="@+id/btnBack"
         android:layout_width="match_parent"
         android:layout_height="52dp"

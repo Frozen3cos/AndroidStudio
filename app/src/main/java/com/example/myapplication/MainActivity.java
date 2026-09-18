@@ -12,10 +12,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    // 缓存三个 Fragment 实例（只创建一次）
     private FriendFragment friendFragment;
     private MessageFragment messageFragment;
+    private ChartFragment chartFragment;
     private MineFragment mineFragment;
+
     private Fragment currentFragment;
 
     @Override
@@ -27,16 +28,16 @@ public class MainActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.parseColor("#4CAF50"));
         }
+
         setContentView(R.layout.activity_main);
 
         BottomNavigationView nav = findViewById(R.id.bottomNav);
 
-        // 初始化三个 Fragment 实例
         friendFragment = new FriendFragment();
         messageFragment = new MessageFragment();
+        chartFragment = new ChartFragment();
         mineFragment = new MineFragment();
 
-        // 默认显示好友
         if (savedInstanceState == null) {
             currentFragment = friendFragment;
             getSupportFragmentManager().beginTransaction()
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 target = friendFragment;
             } else if (id == R.id.nav_message) {
                 target = messageFragment;
+            } else if (id == R.id.nav_chart) {
+                target = chartFragment;
             } else {
                 target = mineFragment;
             }
@@ -60,18 +63,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * 优化后的切换：用 hide/show 而不是 replace，不销毁 Fragment
-     */
     private void switchFragment(Fragment target) {
         if (target == currentFragment) return;
-
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        // 隐藏当前 Fragment（不销毁）
-        if (currentFragment != null) {
-            transaction.hide(currentFragment);
-        }
-        // 若目标 Fragment 已经添加过就 show，否则 add
+        if (currentFragment != null) transaction.hide(currentFragment);
         if (target.isAdded()) {
             transaction.show(target);
         } else {
